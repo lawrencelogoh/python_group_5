@@ -89,6 +89,34 @@ def book_code_details():
     bc_win = Toplevel()
     bc_win.title("Add New Book Code")
     bc_frame = ttk.LabelFrame(bc_win, text="Book Code Details", padding="3 3 12 12")
+    bc_btn_frame = ttk.Frame(bc_win, padding="3 3 12 12")
+
+    book_code_label = ttk.Label(bc_frame, text="Book Code")
+    desc_label = ttk.Label(bc_frame, text="Description")
+
+    book_code, desc = StringVar(), StringVar()
+    book_code_field = ttk.Entry(bc_frame, textvariable=book_code)
+    desc_field = ttk.Entry(bc_frame, textvariable=desc)
+
+    add_button = ttk.Button(bc_btn_frame, text="Add")
+    ignore_button = ttk.Button(bc_btn_frame, text="Ignore")
+    exit_button = ttk.Button(bc_btn_frame, text="Exit")
+
+    bc_frame.grid(column=0, row=0, sticky=(N, W, E, S), padx=10, pady=10)
+    bc_btn_frame.grid(column=0, row=1)
+
+    book_code_label.grid(column=0, row=0)
+    desc_label.grid(column=0, row=1)
+
+    book_code_field.grid(column=1, row=0, columnspan=2)
+    desc_field.grid(column=1, row=1, columnspan=2)
+
+    add_button.grid(column=0, row=0)
+    ignore_button.grid(column=1, row=0)
+    exit_button.grid(column=2, row=0)
+
+    for child in bc_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
 
 
 def dashboard():
