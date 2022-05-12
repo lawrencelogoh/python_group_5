@@ -7,8 +7,15 @@ def change_details():
     dash_win.withdraw()
     cd_win = Toplevel()
     cd_win.title("Add New Charges")
-    cd_frame = ttk.LabelFrame(cd_win, text="Changes Details", padding="3 3 12 12")
+    cd_win.columnconfigure(0, weight=1)
+    cd_win.rowconfigure(0, weight=1)
+    
+    cd_frame = ttk.LabelFrame(cd_win, text="Changes Details", padding=(3,3,12,12))
+    cd_btn_frame = ttk.Frame(cd_win, padding=(3,3,12,12))
+    cd_frame.columnconfigure(0, weight=1)
+    cd_frame.rowconfigure(0, weight=1)
     cd_frame.grid(column=0, row=0, sticky=(N,W,E,S))
+    cd_btn_frame.grid(column=0,row=1)
 
     change_no, change_desc, change = StringVar(), StringVar(), StringVar()
     
@@ -20,15 +27,24 @@ def change_details():
     change_desc_field = ttk.Entry(cd_frame, width=10, textvariable=change_desc)
     change_field = ttk.Entry(cd_frame, width=10, textvariable=change)
 
-    change_no_label.grid(column=1, row=1)
-    change_desc_label.grid(column=1, row=2)
-    change_label.grid(column=1, row=3)
+    change_no_label.grid(column=1, row=1, sticky=(W,E))
+    change_desc_label.grid(column=1, row=2, sticky=(W,E))
+    change_label.grid(column=1, row=3, sticky=(W,E))
 
     change_no_field.grid(column=2, row=1)
     change_desc_field.grid(column=2, row=2)
     change_field.grid(column=2, row=3)
 
-    # Add buttons
+    
+    add_button= ttk.Button(cd_btn_frame, text="Add")
+    ignore_button= ttk.Button(cd_btn_frame, text="Ignore")
+    exit_button= ttk.Button(cd_btn_frame, text="Exit")
+
+    add_button.grid(column=1, row=1)
+    ignore_button.grid(column=2, row=1)
+    exit_button.grid(column=3, row=1)
+
+    
 
     for child in cd_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
@@ -72,12 +88,11 @@ def dashboard():
     dash_win.bind("<Destroy>", lambda e: root.state('normal'))
 
 def login():
-    
+
     root.title("Login")
+    
     mainframe = ttk.Frame(root, padding="3 3 12 12")
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=1)
 
     username, password = StringVar(), StringVar()
     username_field = ttk.Entry(mainframe, width=7, textvariable=username)
@@ -92,9 +107,13 @@ def login():
     
     username_label.grid(column=1, row=1, sticky=W)
     password_label.grid(column=1, row=2, sticky=W)
-    login_btn.grid(column=2, row=3, sticky=S)
+    login_btn.grid(column=1, row=3, columnspan=2,sticky=S)
 
-    for child in mainframe.winfo_children(): 
+    for i, child in enumerate(mainframe.winfo_children()):
+        mainframe.columnconfigure(i, weight=1)
+        mainframe.rowconfigure(i, weight=1)
+        root.columnconfigure(i, weight=1)
+        root.rowconfigure(i, weight=1)
         child.grid_configure(padx=5, pady=5)
     root.mainloop()
 
