@@ -14,8 +14,11 @@ def change_details():
 
     cd_frame = ttk.LabelFrame(cd_win, text="Changes Details", padding=(3, 3, 12, 12))
     cd_btn_frame = ttk.Frame(cd_win, padding=(3, 3, 12, 12))
-    cd_frame.columnconfigure(0, weight=1)
-    cd_frame.rowconfigure(0, weight=1)
+    for i in range(0, 2):
+        cd_frame.columnconfigure(i, weight=1)
+        cd_frame.rowconfigure(i, weight=1)
+
+    cd_frame.rowconfigure(3, weight=1)
     cd_frame.grid(column=0, row=0, sticky=(N, W, E, S))
     cd_btn_frame.grid(column=0, row=1)
 
@@ -39,7 +42,7 @@ def change_details():
 
     add_btn = ttk.Button(cd_btn_frame, text="Add")
     ignore_btn = ttk.Button(cd_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(cd_btn_frame, text="Exit")
+    exit_btn = ttk.Button(cd_btn_frame, text="Exit", command=cd_win.destroy)
 
     add_btn.grid(column=1, row=1)
     ignore_btn.grid(column=2, row=1)
@@ -47,6 +50,8 @@ def change_details():
 
     for child in cd_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
+
+    cd_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
 
 
 def book_type_details():
@@ -65,7 +70,7 @@ def book_type_details():
 
     add_btn = ttk.Button(bt_btn_frame, text="Add")
     ignore_btn = ttk.Button(bt_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(bt_btn_frame, text="Exit")
+    exit_btn = ttk.Button(bt_btn_frame, text="Exit", command=bt_win.destroy)
 
     bt_frame.grid(column=0, row=0, sticky=(N, W, E, S), padx=10, pady=10)
     bt_btn_frame.grid(column=0, row=1)
@@ -82,6 +87,8 @@ def book_type_details():
 
     for child in bt_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
+
+    bt_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
 
 
 def book_code_details():
@@ -100,7 +107,7 @@ def book_code_details():
 
     add_btn = ttk.Button(bc_btn_frame, text="Add")
     ignore_btn = ttk.Button(bc_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(bc_btn_frame, text="Exit")
+    exit_btn = ttk.Button(bc_btn_frame, text="Exit", command=bc_win.destroy)
 
     bc_frame.grid(column=0, row=0, sticky=(N, W, E, S), padx=10, pady=10)
     bc_btn_frame.grid(column=0, row=1)
@@ -118,6 +125,8 @@ def book_code_details():
     for child in bc_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
 
+    bc_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
+
 
 def unlock_user():
     dash_win.withdraw()
@@ -129,7 +138,7 @@ def unlock_user():
     box = Text(uu_frame, width=40)
 
     unlock_btn = ttk.Button(uu_btn_frame, text="Unlock User")
-    exit_btn = ttk.Button(uu_btn_frame, text="Exit")
+    exit_btn = ttk.Button(uu_btn_frame, text="Exit", command=uu_win.destroy)
 
     uu_frame.grid(column=0, row=0, sticky=(N, W, E, S), padx=10, pady=10)
     uu_btn_frame.grid(column=0, row=1)
@@ -138,6 +147,8 @@ def unlock_user():
     unlock_btn.grid(column=0, row=0)
 
     exit_btn.grid(column=2, row=0)
+
+    uu_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
 
 
 def change_password():
@@ -163,7 +174,7 @@ def change_password():
 
     change_pass_btn = ttk.Button(ch_pass_btn_frame, text="Change Password")
     ignore_btn = ttk.Button(ch_pass_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(ch_pass_btn_frame, text="Exit")
+    exit_btn = ttk.Button(ch_pass_btn_frame, text="Exit", command=ch_pass_win.destroy)
 
     ch_pass_frame.grid(column=0, row=0, sticky=(N, W, E, S), padx=10, pady=10)
     ch_pass_btn_frame.grid(column=0, row=1)
@@ -184,6 +195,8 @@ def change_password():
 
     for child in ch_pass_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
+
+    ch_pass_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
 
 
 def user_maintenance():
@@ -261,7 +274,7 @@ def user_maintenance():
 
     update_btn = ttk.Button(um_btn_frame, text="Update")
     ignore_btn = ttk.Button(um_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(um_btn_frame, text="Exit")
+    exit_btn = ttk.Button(um_btn_frame, text="Exit", command=um_win.destroy)
 
     um_win.columnconfigure(0, weight=1)
     um_win.rowconfigure(0, weight=1)
@@ -275,14 +288,10 @@ def user_maintenance():
     user_id_label.grid(column=0, row=0)
     user_id_field.grid(column=1, row=0)
 
-    pd_frame.columnconfigure(0, weight=1)
-    pd_frame.columnconfigure(1, weight=1)
-    pd_frame.columnconfigure(2, weight=1)
-    pd_frame.columnconfigure(3, weight=1)
-    pd_frame.rowconfigure(0, weight=1)
-    pd_frame.rowconfigure(1, weight=1)
-    pd_frame.rowconfigure(2, weight=1)
-    pd_frame.rowconfigure(3, weight=1)
+    for i in range(0, 3):
+        pd_frame.columnconfigure(i, weight=1)
+        pd_frame.rowconfigure(i, weight=1)
+
     pd_frame.rowconfigure(4, weight=1)
 
     uru_frame.columnconfigure(0, weight=1)
@@ -324,6 +333,8 @@ def user_maintenance():
 
     for child in uru_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
+
+    um_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
 
 
 def edit_book():
@@ -403,12 +414,22 @@ def edit_book():
         ttk.Entry(bd_frame, textvariable=lib_date),
         ttk.Entry(bd_frame, textvariable=ed),
         ttk.Entry(bd_frame, textvariable=pg),
+        # ttk.Entry(bd_frame, state="disabled", textvariable=ed),
+        # ttk.Entry(bd_frame, state="disabled", textvariable=pg),
     )
+
+    # ed_field.configure(state="normal")
+    ed_field.insert("end", "Educational")
+    # ed_field.state(["disabled"])
+
+    # pg_field.configure(state="normal")
+    pg_field.insert("insert", "Post Graduate Studies")
+    # pg_field.state(["disabled"])
 
     change_picture_btn = ttk.Button(bd_frame, text="Change Picture")
     edit_btn = ttk.Button(eb_btn_frame, text="Edit")
     ignore_btn = ttk.Button(eb_btn_frame, text="Ignore")
-    exit_btn = ttk.Button(eb_btn_frame, text="Exit")
+    exit_btn = ttk.Button(eb_btn_frame, text="Exit", command=eb_win.destroy)
 
     sn_frame.grid(column=0, row=0)
     bd_frame.grid(column=0, row=1)
@@ -443,6 +464,8 @@ def edit_book():
     for child in bd_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
 
+    eb_win.bind("<Destroy>", lambda e: dash_win.state("normal"))
+
 
 def dashboard():
     root.withdraw()
@@ -466,7 +489,7 @@ def dashboard():
         ao_frame, text="Change User Password", command=change_password
     )
     take_backup_btn = ttk.Button(ao_frame, text="Take Backup")
-    exit_btn = ttk.Button(exit_frame, text="Exit")
+    exit_btn = ttk.Button(exit_frame, text="Exit", command=dash_win.destroy)
 
     v_book_code_listing = ttk.Button(ro_frame, text="View Book Code Listing")
     v_user_listing = ttk.Button(ro_frame, text="View User Listing")
@@ -484,6 +507,22 @@ def dashboard():
     exit_frame.grid(column=0, row=1, padx=5, pady=5)
     ro_frame.grid(column=1, row=0, padx=5, pady=5)
     to_frame.grid(column=1, row=1, padx=5, pady=5)
+
+    for i in range(0, 1):
+        dash_win.columnconfigure(i, weight=1)
+        dash_win.rowconfigure(i, weight=1)
+
+    ao_frame.columnconfigure(0, weight=1)
+    exit_frame.columnconfigure(0, weight=1)
+    ro_frame.columnconfigure(0, weight=1)
+    to_frame.columnconfigure(0, weight=1)
+
+    for i in range(0, 2):
+        ro_frame.rowconfigure(i, weight=1)
+        to_frame.rowconfigure(i, weight=1)
+
+    for i in range(0, 4):
+        ao_frame.rowconfigure(i, weight=1)
 
     for i, child in enumerate(ao_frame.winfo_children()):
         child.grid(column=0, row=i, sticky=(N, W, E, S))
@@ -513,7 +552,7 @@ def login():
 
     username, password = StringVar(), StringVar()
     username_field = ttk.Entry(mainframe, width=7, textvariable=username)
-    password_field = ttk.Entry(mainframe, width=7, textvariable=password)
+    password_field = ttk.Entry(mainframe, width=7, textvariable=password, show="*")
 
     username_field.grid(column=2, row=1, sticky=(W, E))
     password_field.grid(column=2, row=2, sticky=(W, E))
@@ -526,11 +565,12 @@ def login():
     password_label.grid(column=1, row=2, sticky=W)
     login_btn.grid(column=1, row=3, columnspan=2, sticky=S)
 
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
+
     for i, child in enumerate(mainframe.winfo_children()):
         mainframe.columnconfigure(i, weight=1)
         mainframe.rowconfigure(i, weight=1)
-        root.columnconfigure(i, weight=1)
-        root.rowconfigure(i, weight=1)
         child.grid_configure(padx=5, pady=5)
     root.mainloop()
 
