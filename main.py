@@ -186,30 +186,319 @@ def change_password():
         child.grid_configure(padx=5, pady=5)
 
 
+def user_maintenance():
+    dash_win.withdraw()
+    um_win = Toplevel()
+    um_win.title("User Maintenance Menu")
+
+    ui_frame, pd_frame, uru_frame, um_btn_frame = (
+        ttk.Frame(um_win, padding="3 3 12 12"),
+        ttk.LabelFrame(um_win, text="Personal Details", padding="3 3 12 12"),
+        ttk.LabelFrame(um_win, text="User Rights Update", padding="3 3 12 12"),
+        ttk.Frame(um_win, padding="3 3 12 12"),
+    )
+
+    user_id, username, al1, al2, phone, cell, email, ar, lr, ur = (
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+    )
+
+    (
+        user_id_label,
+        username_label,
+        al1_label,
+        al2_label,
+        phone_label,
+        cell_label,
+        email_label,
+        ar_label,
+        lr_label,
+        ur_label,
+    ) = (
+        ttk.Label(ui_frame, text="User ID"),
+        ttk.Label(pd_frame, text="User Name"),
+        ttk.Label(pd_frame, text="Address Line 1"),
+        ttk.Label(pd_frame, text="Address Line 2"),
+        ttk.Label(pd_frame, text="Phone"),
+        ttk.Label(pd_frame, text="Cell"),
+        ttk.Label(pd_frame, text="Email"),
+        ttk.Label(uru_frame, text="Admin Rights"),
+        ttk.Label(uru_frame, text="Librarian Rights"),
+        ttk.Label(uru_frame, text="User Rights"),
+    )
+
+    (
+        user_id_field,
+        username_field,
+        al1_field,
+        al2_field,
+        phone_field,
+        cell_field,
+        email_field,
+        ar_field,
+        lr_field,
+        ur_field,
+    ) = (
+        ttk.Entry(ui_frame, textvariable=user_id),
+        ttk.Entry(pd_frame, textvariable=username),
+        ttk.Entry(pd_frame, textvariable=al1),
+        ttk.Entry(pd_frame, textvariable=al2),
+        ttk.Entry(pd_frame, textvariable=phone),
+        ttk.Entry(pd_frame, textvariable=cell),
+        ttk.Entry(pd_frame, textvariable=email),
+        ttk.Combobox(uru_frame, textvariable=ar),
+        ttk.Combobox(uru_frame, textvariable=lr),
+        ttk.Combobox(uru_frame, textvariable=ur),
+    )
+
+    update_btn = ttk.Button(um_btn_frame, text="Update")
+    ignore_btn = ttk.Button(um_btn_frame, text="Ignore")
+    exit_btn = ttk.Button(um_btn_frame, text="Exit")
+
+    um_win.columnconfigure(0, weight=1)
+    um_win.rowconfigure(0, weight=1)
+    um_win.rowconfigure(1, weight=1)
+
+    ui_frame.grid(column=0, row=0)
+    pd_frame.grid(column=0, row=1, sticky=(W, E))
+    uru_frame.grid(column=0, row=2, sticky=(W, E))
+    um_btn_frame.grid(column=0, row=3)
+
+    user_id_label.grid(column=0, row=0)
+    user_id_field.grid(column=1, row=0)
+
+    pd_frame.columnconfigure(0, weight=1)
+    pd_frame.columnconfigure(1, weight=1)
+    pd_frame.columnconfigure(2, weight=1)
+    pd_frame.columnconfigure(3, weight=1)
+    pd_frame.rowconfigure(0, weight=1)
+    pd_frame.rowconfigure(1, weight=1)
+    pd_frame.rowconfigure(2, weight=1)
+    pd_frame.rowconfigure(3, weight=1)
+    pd_frame.rowconfigure(4, weight=1)
+
+    uru_frame.columnconfigure(0, weight=1)
+    uru_frame.columnconfigure(1, weight=1)
+    uru_frame.rowconfigure(0, weight=1)
+    uru_frame.rowconfigure(1, weight=1)
+    uru_frame.rowconfigure(2, weight=1)
+
+    username_label.grid(column=0, row=0)
+    username_field.grid(column=1, row=0)
+    al1_label.grid(column=0, row=1)
+    al1_field.grid(column=1, row=1)
+    al2_label.grid(column=0, row=2)
+    al2_field.grid(column=1, row=2)
+    phone_label.grid(column=0, row=3)
+    phone_field.grid(column=1, row=3)
+    cell_label.grid(column=2, row=3)
+    cell_field.grid(column=3, row=3)
+    email_label.grid(column=0, row=4)
+    email_field.grid(column=1, row=4)
+
+    ar_label.grid(column=0, row=0)
+    ar_field.grid(column=1, row=0)
+    lr_label.grid(column=0, row=1)
+    lr_field.grid(column=1, row=1)
+    ur_label.grid(column=0, row=2)
+    ur_field.grid(column=1, row=2)
+
+    update_btn.grid(column=0, row=0)
+    ignore_btn.grid(column=1, row=0)
+    exit_btn.grid(column=2, row=0)
+
+    # frame padding
+    for child in ui_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
+
+    for child in pd_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
+
+    for child in uru_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
+
+
+def edit_book():
+    dash_win.withdraw()
+    eb_win = Toplevel()
+    eb_win.title("Edit Book Details")
+
+    sn_frame, bd_frame, eb_btn_frame = (
+        ttk.Frame(eb_win, padding="3 3 12 12"),
+        ttk.LabelFrame(eb_win, text="Book Details", padding="3 3 12 12"),
+        ttk.Frame(eb_win, padding="3 3 12 12"),
+    )
+
+    (
+        serial_no_label,
+        bk_name_label,
+        auth_name_label,
+        book_type_label,
+        book_code_label,
+        book_desc_label,
+        pub_date_label,
+        lib_date_label,
+    ) = (
+        ttk.Label(sn_frame, text="Serial No."),
+        ttk.Label(bd_frame, text="Book Name"),
+        ttk.Label(bd_frame, text="Author Name"),
+        ttk.Label(bd_frame, text="Book Type"),
+        ttk.Label(bd_frame, text="Book Code"),
+        ttk.Label(bd_frame, text="Book Des"),
+        ttk.Label(bd_frame, text="Publish Date"),
+        ttk.Label(bd_frame, text="Lib Date"),
+    )
+
+    (
+        serial_no,
+        bk_name,
+        auth_name,
+        book_type,
+        book_code,
+        book_desc,
+        pub_date,
+        lib_date,
+        ed,
+        pg,
+    ) = (
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+        StringVar(),
+    )
+
+    (
+        serial_no_field,
+        bk_name_field,
+        auth_name_field,
+        book_type_field,
+        book_code_field,
+        book_desc_field,
+        pub_date_field,
+        lib_date_field,
+        ed_field,
+        pg_field,
+    ) = (
+        ttk.Entry(sn_frame, textvariable=serial_no),
+        ttk.Entry(bd_frame, textvariable=bk_name),
+        ttk.Entry(bd_frame, textvariable=auth_name),
+        ttk.Combobox(bd_frame, width=2, textvariable=book_type),
+        ttk.Combobox(bd_frame, width=2, textvariable=book_code),
+        ttk.Entry(bd_frame, textvariable=book_desc),
+        ttk.Entry(bd_frame, textvariable=pub_date),
+        ttk.Entry(bd_frame, textvariable=lib_date),
+        ttk.Entry(bd_frame, textvariable=ed),
+        ttk.Entry(bd_frame, textvariable=pg),
+    )
+
+    change_picture_btn = ttk.Button(bd_frame, text="Change Picture")
+    edit_btn = ttk.Button(eb_btn_frame, text="Edit")
+    ignore_btn = ttk.Button(eb_btn_frame, text="Ignore")
+    exit_btn = ttk.Button(eb_btn_frame, text="Exit")
+
+    sn_frame.grid(column=0, row=0)
+    bd_frame.grid(column=0, row=1)
+    eb_btn_frame.grid(column=0, row=2)
+    serial_no_label.grid(column=0, row=0)
+    serial_no_field.grid(column=1, row=0)
+    bk_name_label.grid(column=0, row=0)
+    bk_name_field.grid(column=1, row=0)
+    auth_name_label.grid(column=0, row=1)
+    auth_name_field.grid(column=1, row=1)
+    book_type_label.grid(column=0, row=2)
+    book_type_field.grid(column=1, row=2)
+    ed_field.grid(column=2, row=2)
+    book_code_label.grid(column=0, row=3)
+    book_code_field.grid(column=1, row=3)
+    pg_field.grid(column=2, row=3)
+    book_desc_label.grid(column=0, row=4)
+    book_desc_field.grid(column=1, row=4)
+    change_picture_btn.grid(column=2, row=4)
+    pub_date_label.grid(column=0, row=5)
+    pub_date_field.grid(column=1, row=5)
+    lib_date_label.grid(column=2, row=5)
+    lib_date_field.grid(column=3, row=5)
+
+    edit_btn.grid(column=0, row=0)
+    ignore_btn.grid(column=1, row=0)
+    exit_btn.grid(column=2, row=0)
+
+    for child in sn_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
+
+    for child in bd_frame.winfo_children():
+        child.grid_configure(padx=5, pady=5)
+
+
 def dashboard():
     root.withdraw()
     global dash_win
     dash_win = Toplevel()
-    dash_win.title("Admin Dashboard")
-    dash_frame = ttk.LabelFrame(dash_win, text="Admin Dashboard", padding="3 3 12 12")
-    dash_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+    dash_win.title("Administrator Main Menu - Library Management System")
+    ao_frame = ttk.LabelFrame(dash_win, text="Admin Options", padding="3 3 12 12")
+    ro_frame = ttk.LabelFrame(dash_win, text="Report Options", padding="3 3 12 12")
+    to_frame = ttk.LabelFrame(dash_win, text="Types Options", padding="3 3 12 12")
+    exit_frame = ttk.Frame(dash_win, padding="3 3 12 12")
 
-    new_charges = ttk.Button(dash_frame, text="Add New Charges", command=change_details)
+    new_user_btn = ttk.Button(ao_frame, text="Add A New User")
+    unlock_user_btn = ttk.Button(
+        ao_frame, text="Unlock User Utility", command=unlock_user
+    )
+    edit_book_btn = ttk.Button(ao_frame, text="Edit Book Details", command=edit_book)
+    user_maintenance_btn = ttk.Button(
+        ao_frame, text="User Maintenance", command=user_maintenance
+    )
+    change_password_btn = ttk.Button(
+        ao_frame, text="Change User Password", command=change_password
+    )
+    take_backup_btn = ttk.Button(ao_frame, text="Take Backup")
+    exit_btn = ttk.Button(exit_frame, text="Exit")
+
+    v_book_code_listing = ttk.Button(ro_frame, text="View Book Code Listing")
+    v_user_listing = ttk.Button(ro_frame, text="View User Listing")
+    v_book_type_listing = ttk.Button(ro_frame, text="View Book Type Listing")
+
+    new_charges = ttk.Button(to_frame, text="Add Charges", command=change_details)
     new_book_type = ttk.Button(
-        dash_frame, text="Add New Book Type", command=book_type_details
+        to_frame, text="Add New Book Type", command=book_type_details
     )
     new_book_code = ttk.Button(
-        dash_frame, text="Add New Book Code", command=book_code_details
+        to_frame, text="Add New Book Code", command=book_code_details
     )
-    # second section
-    unlock_user_btn = ttk.Button(dash_frame, text="Unlock User", command=unlock_user)
-    change_password_btn = ttk.Button(
-        dash_frame, text="Change Password", command=change_password
-    )
-    # third section
 
-    for i, child in enumerate(dash_frame.winfo_children()):
-        child.grid(column=1, row=i, sticky=(N, W, E, S))
+    ao_frame.grid(column=0, row=0, padx=5, pady=5)
+    exit_frame.grid(column=0, row=1, padx=5, pady=5)
+    ro_frame.grid(column=1, row=0, padx=5, pady=5)
+    to_frame.grid(column=1, row=1, padx=5, pady=5)
+
+    for i, child in enumerate(ao_frame.winfo_children()):
+        child.grid(column=0, row=i, sticky=(N, W, E, S))
+        child.grid_configure(padx=5, pady=5)
+
+    for i, child in enumerate(exit_frame.winfo_children()):
+        child.grid(column=0, row=i, sticky=(N, W, E, S))
+        child.grid_configure(padx=5, pady=5)
+
+    for i, child in enumerate(ro_frame.winfo_children()):
+        child.grid(column=0, row=i, sticky=(N, W, E, S))
+        child.grid_configure(padx=5, pady=5)
+
+    for i, child in enumerate(to_frame.winfo_children()):
+        child.grid(column=0, row=i, sticky=(N, W, E, S))
         child.grid_configure(padx=5, pady=5)
 
     dash_win.bind("<Destroy>", lambda e: root.state("normal"))
